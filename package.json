@@ -1,0 +1,24 @@
+{
+  "name": "test_twit",
+  "version": "1.0.0",
+  "description": "npm test",
+  "main": "\u001b[D\u001b[D\u001b[D\u001b[ndex\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Cbot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twitter"
+  ],
+  "author": "pix",
+  "license": "ISC",
+  "dependencies": {
+    "@twetch/sdk": "^0.1.27",
+    "dotenv-extended": "^2.7.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.4.1",
+    "jsdom": "^16.2.1",
+    "puppeteer": "^2.1.1",
+    "twit": "^2.2.11"
+  }
+}
