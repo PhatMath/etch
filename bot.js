@@ -7,7 +7,7 @@ const {
 var Twit = require('twit');
 const fs = require('fs');
 const Twetch = require('@twetch/sdk');
-const twetch = new Twetch({clientIdentifier: 'b20c48d2-6f42-41d4-906b-ca4909e99181'});
+const twetch = new Twetch();
 const puppeteer = require('puppeteer');
 
 let screen_name = "pix_9999";
