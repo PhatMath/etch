@@ -41,7 +41,7 @@ function results(err, data, response) {
     console.log(text); };
 
     let scrape = async () => {
-      const browser = await puppeteer.launch({ headless: false });
+      const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       await page.setViewport({ width: 620, height: 1000 });
     
@@ -79,16 +79,16 @@ function results(err, data, response) {
       
     function etchPost(){
       console.log('posting...');
-    // if (text.length <= 140) { 
-    //     if (Boolean.media = true) {
-    //     twetch.publish('twetch/post@0.0.1', {
-    //       mapComment: text}, './tweet.jpg');
-    //     } else
-    //     twetch.publish('twetch/post@0.0.1', {
-    //       mapComment: post}, './tweet.jpg');
-    // } else
-    //     twetch.publish('twetch/post@0.0.1', {
-    //       mapComment: text}, './tweet.jpg');
-    // }
+    if (text.length <= 140) { 
+        if (Boolean.media = true) {
+        twetch.publish('twetch/post@0.0.1', {
+          mapComment: text}, './tweet.jpg');
+        } else
+        twetch.publish('twetch/post@0.0.1', {
+          mapComment: post}, './tweet.jpg');
+    } else
+        twetch.publish('twetch/post@0.0.1', {
+          mapComment: text}, './tweet.jpg');
+    }
   } 
 };
