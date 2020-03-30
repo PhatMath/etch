@@ -35,41 +35,42 @@ function results(err, data, response) {
     var user = data[0].user.screen_name;
     var media = data[0].entities.media;
     var tweetLink = 'https://twitter.com/'+user+'/status/'+link;
+    var publishPost = 'https://publish.twitter.com/?query='+tweetLink;
     var post = text+" "+tweetLink;
-//    console.log(data);
     console.log('Fetched!');
-    console.log(text); };
+
 
     let scrape = async () => {
       const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
-      await page.setViewport({ width: 620, height: 1000 });
+      await page.setViewport({ width: 1000, height: 1600 });
     
       var jquery_code_str = fs.readFileSync('node_modules/jquery/dist/jquery.js', 'utf8');
     
-      await page.goto(tweetLink, {waitUntil: 'networkidle0'});
+      await page.goto(publishLink, {waitUntil: 'networkidle0'});
     
       var jquery_ev_fn = await page.evaluate(function(code_str){
           return code_str;
       }, jquery_code_str);
       await page.evaluate(jquery_ev_fn);
 
-      const h = await page.evaluate(() => {
-        const $ = window.$;
-        return $('.css-1dbjc4n.r-my5ep6.r-qklmqi.r-1adg3ll').height();
+      const box = await page.evaluate(() => {
+      const $ = window.$;
+      let h = $('.WidgetConfigurator-preview').height();
+      let p = $('.WidgetConfigurator-preview').offset();
+      return { h, p }
       });
-      const position = await page.evaluate(() => {
-        const $ = window.$;
-        return $('.css-1dbjc4n.r-my5ep6.r-qklmqi.r-1adg3ll').offset();
-      });      
-    
-      var clip = new Object();
-      clip.x = 0;
-      clip.y = position.top;
-      clip.width = 598;
-      clip.height = h;
+      console.log(box.h);
+      console.log(box.p.top);
+      console.log(box.p.left)
 
-      await page.screenshot({clip, quality: 70, path: 'tweet.jpg'});
+      var clip = new Object();
+      clip.x = box.p.left+100;
+      clip.y = box.p.top;
+      clip.width = 500;
+      clip.height = box.h-40;
+
+      await page.screenshot({clip, quality: 85, path: 'tweet.jpg'});
       await browser.close();      
       
       etchPost();
@@ -80,7 +81,7 @@ function results(err, data, response) {
     function etchPost(){
       console.log('posting...');
     if (text.length <= 140) { 
-        if (Boolean.media = true) {
+        if (Boolean(media) == true) {
         twetch.publish('twetch/post@0.0.1', {
           mapComment: text}, './tweet.jpg');
         } else
