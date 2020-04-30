@@ -16,7 +16,7 @@
     "@twetch/sdk": "^0.1.27",
     "dotenv-extended": "^2.7.1",
     "fs": "0.0.1-security",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsdom": "^16.2.1",
     "puppeteer": "^2.1.1",
     "twit": "^2.2.11"
